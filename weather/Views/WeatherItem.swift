@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WeatherItem: View {
-    @Binding var day : String
+    @Binding var day: String
     @Binding var iconName: String
     @Binding var temp: Int
     
@@ -19,6 +19,7 @@ struct WeatherItem: View {
             Image(systemName: iconName)
                 .renderingMode(.original)
                 .resizable()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
             Text("\(temp)°")
                 .foregroundStyle(Color.white)

@@ -8,27 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme) private var colorScheme
+    
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, .white]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(.all)
+            BackGroundView(
+                bgColor: .constant(colorScheme == .dark ? Color.black : Color.blue)
+            )
             
             VStack(spacing: 40) {
-                Text("Tehran")
-                    .font(.system(size: 32, weight: .medium))
-                    .foregroundStyle(Color.white)
-                
-                VStack {
-                    Image(systemName: "cloud.sun.fill")
-                        .renderingMode(.original)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 180, height: 180)
-                    Text("69°")
-                        .font(.system(size: 70))
-                        .foregroundStyle(Color.white)
-                        .fontWeight(.semibold)
-                }
+                CityName(cityName: .constant("Tehran"))
+                MainTempView()
                 
                 HStack(spacing: 44) {
                     WeatherItem(day: .constant("MON"), iconName: .constant("cloud.sun.fill"), temp: .constant(88))
@@ -41,7 +31,7 @@ struct ContentView: View {
                 Button(action: {}) {
                     Text("Change Day Time")
                         .frame(width: 280, height: 50)
-                        .background()
+                        .background(Color.white)
                         .font(.title3)
                         .clipShape(.buttonBorder)
                 }
